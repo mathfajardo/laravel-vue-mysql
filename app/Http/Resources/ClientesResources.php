@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -16,7 +17,7 @@ class ClientesResources extends JsonResource
     {
         return [
             'nome do cliente' => $this->nome_cliente,
-            'data de nascimento' => $this->data_nascimento,
+            'data de nascimento' => Carbon::parse($this->data_nascimento)->format('d/m/Y'),
             'ativo' => $this->ativo
         ];
     }
