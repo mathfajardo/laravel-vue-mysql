@@ -13,6 +13,7 @@ Route::get('/produtos', [ProdutosController::class, 'index']);
 Route::post('/produtos', [ProdutosController::class, 'store']);
 Route::get('/produtos/{produto}', [ProdutosController::class, 'show']);
 Route::delete('/produtos/{produto}', [ProdutosController::class, 'destroy']);
+Route::put('/produtos/{produto}', [ProdutosController::class, "update"]);
 
 // rotas dos clientes
 Route::get('/clientes', [ClientesController::class, 'index']);
