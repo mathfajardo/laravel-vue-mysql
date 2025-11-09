@@ -42,6 +42,32 @@ class ProdutosController extends Controller
         return new ProdutosResource(Produtos::where('id', $id)->first());
     }
 
+    public function update(Request $request, string $id) {
+        $validator = Validator::make($request->all(), [
+            'nome_produto' => 'required',
+            'categoria' => 'required',
+            'valor_produto' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return $this->error('validação deu erro', 422, $validator->errors());
+        }
+
+        $validated = $validator->validated();
+
+        $update = Produtos::find($id)->update([
+            'nome_produto' => $validated['nome_produto'],
+            'categoria' => $validated['categoria'],
+            'valor_produto' => $validated['valor_produto']
+        ]);
+
+        if ($update) {
+            return $this->response('Produto atualizado com sucesso', 200, $request->all());
+        }
+
+        return $this->error('Produto não atualizado', 400);
+    }
+
     public function destroy(Produtos $produto) {
         $deleted = $produto->delete();
 
