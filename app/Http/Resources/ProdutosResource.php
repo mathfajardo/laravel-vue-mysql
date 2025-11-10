@@ -18,7 +18,7 @@ class ProdutosResource extends JsonResource
             'id' => $this->id,
             'nome_produto' => $this->nome_produto,
             'categoria' => $this->categoria,
-            'valor_produto' => "R$" . $this->valor_produto
+            'valor_produto' => $this->valor_produto
         ];
     }
 }
