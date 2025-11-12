@@ -22,7 +22,7 @@ class VendasController extends Controller
             "produto_id" => "nullable",
             "cliente_id" => "nullable",
             "quantidade" => "required",
-            "valor_unitario" => "required"
+            "valor_total" => "required"
         ]);
 
         if ($validator->fails()) {

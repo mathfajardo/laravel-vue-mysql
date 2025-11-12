@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('produto_id')->constrained();
             $table->foreignId('cliente_id')->constrained();
             $table->integer('quantidade');
-            $table->decimal('valor_unitario');
+            $table->decimal('valor_total', 10, 2);
             $table->timestamps();
         });
     }

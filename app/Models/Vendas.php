@@ -13,7 +13,7 @@ class Vendas extends Model
         'produto_id', 
         'cliente_id', 
         'quantidade',
-        'valor_unitario'
+        'valor_total'
     ];
 
     public function produto(){
