@@ -15,6 +15,7 @@ class VendasResources extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id' => $this->id,
             'produto_id' => $this->produto_id,
             'cliente_id' => $this->cliente_id,
             'quantidade' => $this->quantidade,

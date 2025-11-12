@@ -16,9 +16,10 @@ class ClientesResources extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'nome do cliente' => $this->nome_cliente,
-            'data de nascimento' => Carbon::parse($this->data_nascimento)->format('d/m/Y'),
-            'ativo' => $this->ativo
+            'id' => $this->id,
+            'nome_cliente' => $this->nome_cliente,
+            'data_nascimento' => Carbon::parse($this->data_nascimento)->format('d/m/Y'),
+            'ativo' => $this->ativo ? "Sim" : "Não"
         ];
     }
 }

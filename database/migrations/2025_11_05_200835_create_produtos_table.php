@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nome_produto');
             $table->string('categoria');
-            $table->decimal('valor_produto', 5, 2);
+            $table->decimal('valor_produto', 10, 2);
             $table->timestamps();
         });
     }

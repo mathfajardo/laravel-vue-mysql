@@ -22,7 +22,7 @@ class Clientes extends Model
         $queryFilter = (new ClientesFilter)->filter($request);
 
         if (empty($queryFilter)) {
-            return ClientesResources::collection(Produtos::all());
+            return ClientesResources::collection(Clientes::all());
         }
 
         $data = Clientes::query();
