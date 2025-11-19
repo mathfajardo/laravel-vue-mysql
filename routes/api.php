@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\ProdutosController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\VendasController;
 use App\Models\Produtos;
 use Illuminate\Http\Request;
@@ -9,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 
 
 // rotas dos produtos
-Route::get('/produtos', [ProdutosController::class, 'index']);
+Route::get('/produtos', [ProdutosController::class, 'index'])->middleware('auth:sanctum');
 Route::post('/produtos', [ProdutosController::class, 'store']);
 Route::get('/produtos/{produto}', [ProdutosController::class, 'show']);
 Route::delete('/produtos/{produto}', [ProdutosController::class, 'destroy']);
@@ -27,4 +29,8 @@ Route::post('/vendas', [VendasController::class, 'store']);
 Route::get('/vendas/{venda}', [VendasController::class, 'show']);
 Route::delete('/vendas/{venda}', [VendasController::class, 'destroy']);
 
+// rota para autenticação
+Route::post('/login', [AuthController::class, 'login']);
 
+// rota dos users
+Route::post('/user', [UserController::class, 'store']);  
