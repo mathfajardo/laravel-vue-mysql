@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 // rotas dos produtos
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/produtos', [ProdutosController::class, 'index'])->middleware('ability:get-produtos');
+    Route::post('/logout', [AuthController::class, 'logout']);
 });
 
 

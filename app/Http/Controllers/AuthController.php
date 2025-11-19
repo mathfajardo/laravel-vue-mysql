@@ -19,4 +19,11 @@ class AuthController extends Controller
         }
         return $this->response('Não autorizado', 403);
     }
+
+    public function logout(Request $request)
+    {
+        $request->user()->currentAccessToken()->delete();
+
+        return $this->response("token removido", 200);
+    }
 }
