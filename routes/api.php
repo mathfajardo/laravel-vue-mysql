@@ -32,6 +32,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/vendas/{venda}', [VendasController::class, 'destroy']);
 
     Route::post('/logout', [AuthController::class, 'logout']);
+    
+    // verifica token
+    Route::get('login/verifica', [AuthController::class, 'verifica_token']);
 });
 
 // rota para autenticação

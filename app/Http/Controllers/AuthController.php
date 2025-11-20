@@ -26,4 +26,10 @@ class AuthController extends Controller
 
         return $this->response("token removido", 200);
     }
+
+    public function verifica_token(Request $request) {
+        return $this->response('Token válido', 200, [
+            'user' => $request->user()
+        ]);
+    }
 }
