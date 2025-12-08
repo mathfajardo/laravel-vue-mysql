@@ -13,7 +13,8 @@ class VendasController extends Controller
     use HttpResponses;
     
     public function index(Request $request) {
-        return VendasResources::colletion(Vendas::all());
+        // return VendasResources::collection(Vendas::all());
+        return (new Vendas())->filter($request);
     }
 
     public function store(Request $request) {
