@@ -34,6 +34,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/vendas/{venda}', [VendasController::class, 'destroy']);
     Route::get('/vendasTotal', [VendasController::class, 'vendasTotal']);
     Route::get('/vendasValorTotal', [VendasController::class, 'vendasValorTotal']);
+    Route::get('/vendasValorTotalMes', [VendasController::class, 'vendasValorTotalMes']);
+    Route::get('/vendasValorTotalDia', [VendasController::class, 'vendasValorTotalDia']);
 
     Route::post('/logout', [AuthController::class, 'logout']);
     

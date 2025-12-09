@@ -62,13 +62,51 @@ class VendasController extends Controller
     public function vendasValorTotal() {
         // retornando o valor total de vendas realizadas
         $valor_total = DB::table('vendas')
-                        ->select(DB::raw('SUM(valor_total) as valor_total'))
-                        ->first();
+                        ->select(DB::raw('SUM(valor_total) as valor_total'))->first();
+                        
 
         // transformando em um array associativo
         $array = (array) $valor_total;
 
         // retornando a requisição
         return $this->response('Valor total de vendas', 200, $array);
+    }
+
+    public function vendasValorTotalMes() {
+        // armazenando mes e ano em variaveis
+        $mes = now()->month;
+        $ano = now()->year;
+
+        // retornado o valor todal do dia
+        $valor_total_dia = DB::table('vendas')
+                            ->select(DB::raw('SUM(valor_total) as valor_total'))
+                            ->whereMonth('created_at', $mes)
+                            ->whereYear('created_at', $ano)->first();
+        
+        // tranformando me array associativo
+        $array = (array) $valor_total_dia;
+
+        //retornadno requisaoca
+        return $this->response('Valor total de vendas por mes', 200, $array);
+    }
+
+    public function vendasValorTotalDia() {
+        // armazenando mes e ano em variaveis
+        $mes = now()->month;
+        $ano = now()->year;
+        $dia = now()->day;
+
+        // retornado o valor todal do dia
+        $valor_total_mes = DB::table('vendas')
+                            ->select(DB::raw('SUM(valor_total) as valor_total'))
+                            ->whereMonth('created_at', $mes)
+                            ->whereYear('created_at', $ano)
+                            ->whereDay('created_at', $dia)->first();
+        
+        // tranformando me array associativo
+        $array = (array) $valor_total_mes;
+
+        //retornadno requisaoca
+        return $this->response('Valor total de vendas por mes', 200, $array);
     }
 }
