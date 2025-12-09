@@ -32,6 +32,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/vendas', [VendasController::class, 'store']);
     Route::get('/vendas/{venda}', [VendasController::class, 'show']);
     Route::delete('/vendas/{venda}', [VendasController::class, 'destroy']);
+    Route::get('/vendasTotal', [VendasController::class, 'vendasTotal']);
+    Route::get('/vendasValorTotal', [VendasController::class, 'vendasValorTotal']);
 
     Route::post('/logout', [AuthController::class, 'logout']);
     
