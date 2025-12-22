@@ -8,6 +8,7 @@ use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpKernel\EventListener\ValidateRequestListener;
 
 class ClientesController extends Controller
 {
@@ -40,6 +41,34 @@ class ClientesController extends Controller
 
     public function show(String $id) {
         return new ClientesResources(Clientes::where('id', $id)->first());
+    }
+
+    public function update(Request $request, string $id) {
+
+
+        $validator = Validator::make($request->all(), [
+            'nome_cliente' => 'required',
+            'data_nascimento' => 'required',
+            'ativo' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return $this->error("Erro na validação", 422, $validator->errors());
+        }
+
+        $validated = $validator->validate();
+
+        $update = Clientes::find($id)->update([
+            'nome_cliente' => $validated['nome_cliente'],
+            'data_nascimento' => $validated['data_nascimento'],
+            'ativo' => $validated['ativo']
+        ]);
+
+        if ($update) {
+            return $this->response("Cliente atualizado com sucesso!", 200, $request->all());
+        }
+
+        return $this->error("Cliente não atualizado", 400);
     }
 
     public function destroy(Clientes $cliente) {

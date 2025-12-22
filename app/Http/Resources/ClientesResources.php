@@ -19,7 +19,7 @@ class ClientesResources extends JsonResource
             'id' => $this->id,
             'nome_cliente' => $this->nome_cliente,
             'data_nascimento' => Carbon::parse($this->data_nascimento)->format('d/m/Y'),
-            'ativo' => $this->ativo ? "Sim" : "Não"
+            'ativo' => $this->ativo
         ];
     }
 }
